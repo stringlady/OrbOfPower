@@ -32,7 +32,7 @@ class MainMenu: SKScene {
         }
         
         /* 2) Load Game scene */
-        guard let scene = GameScene(fileNamed:"GameScene") else {
+        guard let scene = Tutorial(fileNamed:"Tutorial") else {
             print("Could not make GameScene, check the name is spelled correctly")
             return
         }

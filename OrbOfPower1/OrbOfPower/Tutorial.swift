@@ -7,16 +7,21 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 //enum GameSceneState {
 //    case active, gameOver
 //}
 
+enum PlayerType {
+    case water, land
+}
+
 class Tutorial: SKScene, SKPhysicsContactDelegate {
     
     let scrollSpeed: CGFloat = 100
     var scrollLayer: SKNode!
-    let fixedDelta: CFTimeInterval = 5.0 / 60.0 /* 60 FPS */
+    let fixedDelta: CFTimeInterval = 3.0 / 60.0 /* 60 FPS */
     var hero: SKSpriteNode!
     /* Game management */
     var gameState: GameSceneState = .active
@@ -31,7 +36,14 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
     var timer: CFTimeInterval = 0
     var pointLabel: SKLabelNode!
     var obstacleLayer: SKNode!
-    var waterTouch = false
+    var splash: AVAudioPlayer?
+    var landOrb: SKSpriteNode!
+    var waterOrb: SKSpriteNode!
+    // var shootOrb: SKSpriteNode!
+    var landTransform: SKSpriteNode!
+    //var waterTransform: SKSpriteNode!
+    var currentType: PlayerType = .land
+    var playGame: MSButtonNode!
     
     
     
@@ -49,10 +61,34 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         buttonRestart = self.childNode(withName: "//buttonRestart") as! MSButtonNode
         pointLabel = self.childNode(withName: "pointLabel") as! SKLabelNode
         obstacleLayer = self.childNode(withName: "obstacleLayer")
+        landOrb = self.childNode(withName: "landOrb") as! SKSpriteNode
+        waterOrb = self.childNode(withName: "waterOrb") as! SKSpriteNode
+       // shootOrb = self.childNode(withName: "shootOrb") as! SKSpriteNode
+        landTransform = self.childNode(withName: "landTransform") as! SKSpriteNode
+        //waterTransform = self.childNode(withName: "waterTransform") as! SKSpriteNode
+        playGame = self.childNode(withName: "playGame") as! MSButtonNode
+        
         
         
         /* Setup restart button selection handler */
-        buttonRestart.selectedHandler = {
+        buttonRestart.selectedHandler = { [unowned self] in
+            
+            /* Grab reference to our SpriteKit view */
+            let skView = self.view as SKView!
+            
+            /* Load Game scene */
+            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            
+            /* Ensure correct aspect mode */
+            scene?.scaleMode = .aspectFill
+            
+            /* Restart game scene */
+            skView?.presentScene(scene)
+            
+        }
+        
+        /* Setup play button selection handler */
+        playGame.selectedHandler = { [unowned self] in
             
             /* Grab reference to our SpriteKit view */
             let skView = self.view as SKView!
@@ -70,6 +106,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         
         /* Hide restart button */
         buttonRestart.state = .MSButtonNodeStateHidden
+        
+        // Hide play Button
+        playGame.state = .MSButtonNodeStateHidden
         
         jumpAction = SKAction.sequence([jumpUp, fallBack])
     }
@@ -128,7 +167,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         /* Skip game update if game no longer active */
         if gameState != .active { return }
         
-        addEnemy()
+        //addEnemy()
         
         timer += fixedDelta
         
@@ -149,16 +188,70 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         let contactA = contact.bodyA
         let contactB = contact.bodyB
         
+        
         /* Get references to the physics body parent nodes */
         let nodeA = contactA.node!
         let nodeB = contactB.node!
         
         /* Did our hero pass through the 'goal'? */
-        if nodeA.name == "water" || nodeB.name == "water" {
+        if (nodeA.name == "water" || nodeB.name == "water") && currentType == .land {
+            self.hero.removeFromParent()
             
+            playSound()
+            
+            gameState = .gameOver
+            
+            /* Show restart button */
+            buttonRestart.state = .MSButtonNodeStateActive
+            
+            buttonRestart.alpha = 1
             
             /* We can return now */
             return
+        }
+        
+        if nodeA.name == "landOrb" || nodeB.name == "landOrb" {
+            currentType = .land
+            
+            if nodeA.name == "landOrb" {
+                nodeA.removeFromParent()
+            }
+            
+            if nodeB.name == "landOrb" {
+                nodeB.removeFromParent()
+            }
+        }
+        
+        if nodeA.name == "waterOrb" || nodeB.name == "waterOrb" {
+            currentType = .water
+            
+            if nodeA.name == "waterOrb" {
+                nodeA.removeFromParent()
+            }
+            
+            if nodeB.name == "waterOrb" {
+                nodeB.removeFromParent()
+            }
+            
+        }
+        
+        if (nodeA.name == "water" || nodeB.name == "water") && currentType == .water {
+            playSound()
+        }
+        
+        if (contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4) && currentType == .water {
+            self.hero.removeFromParent()
+            
+            gameState = .gameOver
+            
+            /* Show restart button */
+            buttonRestart.state = .MSButtonNodeStateActive
+            
+            buttonRestart.alpha = 1
+            
+            /* We can return now */
+            return
+            
         }
         
         /* Ensure only called while game running */
@@ -187,17 +280,27 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
 //            self.hero.removeFromParent()
 //        }
         
-        /* Show restart button */
-        buttonRestart.state = .MSButtonNodeStateActive
         
-        if waterTouch == true {
-            self.hero.removeFromParent()
-            gameState = .gameOver
+        
+    }
+    
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "splash", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
             
-            buttonRestart.alpha = 1
+            splash = try AVAudioPlayer(contentsOf: url)
+            guard let player = splash else { return }
             
+            player.play()
+        } catch let error {
+            print(error.localizedDescription)
         }
     }
+    
+    
     
     
     
