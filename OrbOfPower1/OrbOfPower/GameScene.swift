@@ -7,16 +7,18 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 enum GameSceneState {
     case active, gameOver
 }
 
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let scrollSpeed: CGFloat = 100
     var scrollLayer: SKNode!
-    let fixedDelta: CFTimeInterval = 1.0 / 60.0 /* 60 FPS */
+    let fixedDelta: CFTimeInterval = 4.0 / 60.0 /* 60 FPS */
     var hero: SKSpriteNode!
     /* Game management */
     var gameState: GameSceneState = .active
@@ -30,11 +32,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var jumpAction = SKAction()
     var timer: CFTimeInterval = 0
     var pointLabel: SKLabelNode!
-    var obstacleLayer: SKNode!
+    var splash: AVAudioPlayer?
+    var landOrb: SKSpriteNode!
+    var waterOrb: SKSpriteNode!
+    // var shootOrb: SKSpriteNode!
+    var landTransform: SKSpriteNode!
+    //var waterTransform: SKSpriteNode!
+    var currentType: PlayerType = .land
+    var playGame: MSButtonNode!
+    var platformSource: SKNode!
+    var platformLayer: SKNode!
+    var highScore = UserDefaults.standard.integer(forKey: "HIGHSCORE")
     
     
     
-    override func didMove(to view: SKView) {
+    
+    func gameOver() {
+        if currentScore > highScore {
+            saveHighScore()
+        }
+        /* GAME OVER */
+        let skView = self.view as SKView!
+        guard let scene = GameScene(fileNamed:"GameOver") as GameScene! else {
+            return
+        }
+        /* Ensure correct aspect mode */
+        scene.scaleMode = .aspectFill
+        
+        /* Restart GameScene */
+        skView?.presentScene(scene)
+    }
+    
+        override func didMove(to view: SKView) {
         
         physicsWorld.contactDelegate = self
         
@@ -47,7 +76,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         water = self.childNode(withName: "//water") as! SKSpriteNode
         buttonRestart = self.childNode(withName: "//buttonRestart") as! MSButtonNode
         pointLabel = self.childNode(withName: "pointLabel") as! SKLabelNode
-        obstacleLayer = self.childNode(withName: "obstacleLayer")
+        landOrb = self.childNode(withName: "landOrb") as! SKSpriteNode
+        waterOrb = self.childNode(withName: "waterOrb") as! SKSpriteNode
+        // shootOrb = self.childNode(withName: "shootOrb") as! SKSpriteNode
+        //landTransform = self.childNode(withName: "landTransform") as! SKSpriteNode
+        //waterTransform = self.childNode(withName: "waterTransform") as! SKSpriteNode
+        platformSource = self.childNode(withName: "platform")
+        platformLayer = self.childNode(withName: "platformLayer")
         
         
         /* Setup restart button selection handler */
@@ -94,6 +129,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
     }
+        
+        func saveHighScore() {
+            UserDefaults().set(GameScene.score, forKey: "HIGHSCORE")
+        }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -108,6 +147,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         /* Process world scrolling */
         scrollWorld()
+        
+        //Process platforms
+        updateObstacles()
+        
+        timer+=fixedDelta
         
         /* Apply falling rotation */
         if sinceTouch > 0.2 {
@@ -127,7 +171,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Skip game update if game no longer active */
         if gameState != .active { return }
         
-        addEnemy()
+       // addEnemy()
         
         timer += fixedDelta
         
@@ -143,6 +187,89 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func didBegin(_ contact: SKPhysicsContact) {
         /* Hero touches anything, game over */
+        
+        
+        /* Get references to bodies involved in collision */
+        let contactA = contact.bodyA
+        let contactB = contact.bodyB
+        
+        
+        /* Get references to the physics body parent nodes */
+        let nodeA = contactA.node!
+        let nodeB = contactB.node!
+        
+        /* Did our hero pass through the 'goal'? */
+        if (contactA.node?.name == "water" || contactB.node?.name == "water") && currentType == .land {
+            self.hero.removeFromParent()
+            
+            //playSound()
+            
+            gameState = .gameOver
+            
+            /* Show restart button */
+            buttonRestart.state = .MSButtonNodeStateActive
+            
+            buttonRestart.alpha = 1
+            
+            /* We can return now */
+            return
+        }
+        
+        if contactA.node?.name == "landOrb" || contactB.node?.name == "landOrb" {
+            currentType = .land
+            
+            if nodeA.name == "landOrb" {
+                contactA.node?.removeFromParent()
+            }
+            
+            if nodeB.name == "landOrb" {
+                contactB.node?.removeFromParent()
+            }
+        }
+        
+        if contactA.node?.name == "waterOrb" || contactB.node?.name == "waterOrb" {
+            currentType = .water
+            
+            if nodeA.name == "waterOrb" {
+                contactA.node?.removeFromParent()
+            }
+            
+            if nodeB.name == "waterOrb" {
+                contactB.node?.removeFromParent()
+            }
+            
+        }
+        
+        if (contactA.node?.name == "water" || contactB.node?.name == "water") && currentType == .water {
+            // playSound()
+        }
+        
+        if (contactA.node?.name == "platform" || contactB.node?.name == "platform") && currentType == .water {
+            self.hero.removeFromParent()
+            
+            gameState = .gameOver
+            
+            /* Show restart button */
+            buttonRestart.state = .MSButtonNodeStateActive
+            
+            buttonRestart.alpha = 1
+            
+            /* We can return now */
+            return
+            
+        }
+        
+        if (contactA.node?.name == "end" || contactB.node?.name == "end") {
+            gameState = .gameOver
+            
+            //Show play button
+            playGame.state = .MSButtonNodeStateActive
+            
+            playGame.alpha = 1
+            
+            //We can return now
+            return
+        }
         
         /* Ensure only called while game running */
         if gameState != .active { return }
@@ -175,6 +302,62 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         buttonRestart.state = .MSButtonNodeStateActive
     }
     
+    func playSound() {
+        guard let url = Bundle.main.url(forResource: "splash", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            splash = try AVAudioPlayer(contentsOf: url)
+            guard let hero = splash else { return }
+            
+            hero.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func updateObstacles() {
+        /* Update Obstacles */
+        
+        platformLayer.position.x -= scrollSpeed * CGFloat(fixedDelta)
+        
+        /* Loop through obstacle layer nodes */
+        for platform in platformLayer.children as! [SKReferenceNode] {
+            
+            /* Get obstacle node position, convert node position to scene space */
+            let platformPosition = platformLayer.convert(platform.position, to: self)
+            
+            /* Check if obstacle has left the scene */
+            if platformPosition.x <= -26 {
+                // 26 is one half the width of an obstacle
+                
+                /* Remove obstacle node from obstacle layer */
+                platform.removeFromParent()
+            }
+            
+        }
+        
+        /* Time to add a new obstacle? */
+        if timer >= 1.5 {
+            
+            /* Create a new obstacle by copying the source obstacle */
+            let newPlatform = platformSource.copy() as! SKNode
+            platformLayer.addChild(newPlatform)
+            
+            /* Generate new obstacle position, start just outside screen and with a random y value */
+            let randomPosition = CGPoint(x: 462, y: CGFloat.random(min: 92, max: 250))
+            
+            /* Convert new node position back to obstacle layer space */
+            newPlatform.position = self.convert(randomPosition, to: platformLayer)
+            
+            // Reset spawn timer
+            timer = 0
+        }
+        
+        }
+    
     func addEnemy () {
         
         let minValue = self.size.width / 8;
@@ -190,7 +373,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         //        let min: CGFloat = 15.0
         //        let max: CGFloat = 200.0
         //        let randomCGFloatBetweenMinAndMax2 = CGFloat(arc4random_uniform(UInt32(max-min)) + UInt32(min))
-    }
+        }
     
-}
+    }
+
+
 

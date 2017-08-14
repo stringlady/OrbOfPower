@@ -19,6 +19,7 @@
 		C822C91A1F29084700F40C8A /* MSButtonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C822C9191F29084700F40C8A /* MSButtonNode.swift */; };
 		C822C91C1F29267500F40C8A /* CGFloat+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C822C91B1F29267500F40C8A /* CGFloat+Extensions.swift */; };
 		C822C91E1F292EB300F40C8A /* SeaObstacles.sks in Resources */ = {isa = PBXBuildFile; fileRef = C822C91D1F292EB300F40C8A /* SeaObstacles.sks */; };
+		C85593D91F3FCD1E0035D026 /* Anaya Game Song.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C85593D81F3FCD1E0035D026 /* Anaya Game Song.mp3 */; };
 		C8A960C01F3A3FE2004CE859 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C8A960BF1F3A3FE2004CE859 /* splash.mp3 */; };
 		C8A960C21F3B4197004CE859 /* Platform.sks in Resources */ = {isa = PBXBuildFile; fileRef = C8A960C11F3B4197004CE859 /* Platform.sks */; };
 		C8A960C41F3B5FA9004CE859 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = C8A960C31F3B5FA9004CE859 /* GameScene.sks */; };
@@ -42,6 +43,7 @@
 		C822C9191F29084700F40C8A /* MSButtonNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSButtonNode.swift; sourceTree = "<group>"; };
 		C822C91B1F29267500F40C8A /* CGFloat+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGFloat+Extensions.swift"; sourceTree = "<group>"; };
 		C822C91D1F292EB300F40C8A /* SeaObstacles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SeaObstacles.sks; sourceTree = "<group>"; };
+		C85593D81F3FCD1E0035D026 /* Anaya Game Song.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Anaya Game Song.mp3"; sourceTree = "<group>"; };
 		C8A960BF1F3A3FE2004CE859 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
 		C8A960C11F3B4197004CE859 /* Platform.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Platform.sks; sourceTree = "<group>"; };
 		C8A960C31F3B5FA9004CE859 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				C822C9191F29084700F40C8A /* MSButtonNode.swift */,
 				C822C9051F2685B300F40C8A /* Main.storyboard */,
 				C8A960BF1F3A3FE2004CE859 /* splash.mp3 */,
+				C85593D81F3FCD1E0035D026 /* Anaya Game Song.mp3 */,
 				C8C262291F32207400563D15 /* Assets.xcassets */,
 				C822C90A1F2685B300F40C8A /* LaunchScreen.storyboard */,
 				C822C90D1F2685B300F40C8A /* Info.plist */,
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C8A960C01F3A3FE2004CE859 /* splash.mp3 in Resources */,
+				C85593D91F3FCD1E0035D026 /* Anaya Game Song.mp3 in Resources */,
 				C822C9071F2685B300F40C8A /* Main.storyboard in Resources */,
 				C822C91E1F292EB300F40C8A /* SeaObstacles.sks in Resources */,
 				C822C8FE1F2685B300F40C8A /* Tutorial.sks in Resources */,
