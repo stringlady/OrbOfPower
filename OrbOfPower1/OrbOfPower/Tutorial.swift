@@ -21,7 +21,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
     
     let scrollSpeed: CGFloat = 100
     var scrollLayer: SKNode!
-    let fixedDelta: CFTimeInterval = 4.0 / 60.0 /* 60 FPS */
+    let fixedDelta: CFTimeInterval = 2.0 / 60.0 /* 60 FPS */
     var hero: SKSpriteNode!
     /* Game management */
     var gameState: GameSceneState = .active
@@ -45,6 +45,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
     var currentType: PlayerType = .land
     var playGame: MSButtonNode!
     var end: SKSpriteNode!
+    var jump = false
     
     
     
@@ -96,7 +97,7 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             let skView = self.view as SKView!
             
             /* Load Game scene */
-            let scene = GameScene(fileNamed:"GameScene") as GameScene!
+            let scene = MainMenu(fileNamed:"MainMenu") as MainMenu!
             
             /* Ensure correct aspect mode */
             scene?.scaleMode = .aspectFill
@@ -112,27 +113,25 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         // Hide play Button
         playGame.state = .MSButtonNodeStateHidden
         
-        jumpAction = SKAction.sequence([jumpUp, fallBack])
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         /* Called when a touch begins */
         
+        /* Disable touch if game state is not active */
+        if gameState != .active { return }
+        
+        if jump == true {
+            hero.physicsBody?.velocity = CGVector(dx: 0, dy: 0)
+            hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 100)) //character jumps
+            jump = false
+        }
+        
         /* Apply vertical impulse */
         hero.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
         
-        //Apply subtle rotation
-        hero.physicsBody?.applyAngularImpulse(1)
-        
-        //Reset touch timer
+        /* Reset touch timer */
         sinceTouch = 0
-        
-        /* Skip game update if game no longer active */
-        if gameState != .active { return }
-        
-        if hero.action(forKey: "jump") == nil {
-            hero.run(jumpAction, withKey:"jump")
-        }
         
         
     }
@@ -140,40 +139,31 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
-        //Grab current velocity
+        /* Disable touch if game state is not active */
+        if gameState != .active { return }
+        
+        /* Grab current velocity */
         let velocityY = hero.physicsBody?.velocity.dy ?? 0
         
-        //Check and cap vertical velocity
+        /* Check and cap vertical velocity */
         if velocityY > 400 {
             hero.physicsBody?.velocity.dy = 400
         }
+    
+        
         
         /* Process world scrolling */
         scrollWorld()
         
-        /* Apply falling rotation */
-        if sinceTouch > 0.2 {
-            let impulse = -20000 * fixedDelta
-            hero.physicsBody?.applyAngularImpulse(CGFloat(impulse))
-        }
-        
-        /* Clamp rotation */
-        hero.zRotation.clamp(v1: CGFloat(-90).degreesToRadians(), CGFloat(30).degreesToRadians())
-        hero.physicsBody?.angularVelocity.clamp(v1: -1, 3)
-        
-        /* Update last touch timer */
-        sinceTouch += fixedDelta
         
         distanceLabel.text = String(describing: Int(scrollLayer.position.x) / -10)
-        
-        /* Skip game update if game no longer active */
-        if gameState != .active { return }
         
         //addEnemy()
         
         timer += fixedDelta
         
         pointLabel.text = String(Int(timer))
+        
         
     }
     
@@ -195,11 +185,25 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         let nodeA = contactA.node!
         let nodeB = contactB.node!
         
+        if (contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4) && currentType == .land {
+            hero.texture = SKTexture(imageNamed: "landTransform")
+        }
+        
+        //jump = true when character is in contact with the ground node...
+        if contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4 {
+            if contactA.categoryBitMask == 1 {
+                jump = true
+            }
+            if contactB.categoryBitMask == 1 {
+                jump = true
+            }
+        }
+        
         /* Did our hero pass through the 'goal'? */
         if (contactA.node?.name == "water" || contactB.node?.name == "water") && currentType == .land {
             self.hero.removeFromParent()
             
-            //playSound()
+            playSound()
             
             gameState = .gameOver
             
@@ -238,7 +242,8 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         }
         
         if (contactA.node?.name == "water" || contactB.node?.name == "water") && currentType == .water {
-           // playSound()
+            playSound()
+            hero.texture = SKTexture(imageNamed: "seaTransform")
         }
         
         if (contactA.categoryBitMask == 4 || contactB.categoryBitMask == 4) && currentType == .water {
@@ -268,26 +273,42 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             return
         }
         
+        if (contactA.node?.name == "bound" || contactB.node?.name == "bound") {
+            
+            self.hero.removeFromParent()
+            
+            gameState = .gameOver
+            
+            //Show play button
+            playGame.state = .MSButtonNodeStateActive
+            
+            playGame.alpha = 1
+            
+            //We can return now
+            return
+        }
+        
+        if (contactA.node?.name == "bound1" || contactB.node?.name == "bound1") {
+            gameState = .gameOver
+            
+            //Show play button
+            playGame.state = .MSButtonNodeStateActive
+            
+            playGame.alpha = 1
+            
+            //We can return now
+            return
+        }
+        
         /* Ensure only called while game running */
         if gameState != .active { return }
         
         /* Change game state to game over */
-       
-        /* Stop any new angular velocity being applied */
-        hero.physicsBody?.allowsRotation = false
-        
-        /* Reset angular velocity */
-        hero.physicsBody?.angularVelocity = 0
-        
-        /* Stop hero flapping animation */
-        hero.removeAllActions()
         
         /* Create our hero death action */
-        let heroDeath = SKAction.run({
-            
-            /* Put our hero face down in the dirt */
-            self.hero.zRotation = CGFloat(-90).degreesToRadians()
-        })
+//        let heroDeath = SKAction.run({
+//
+//        })
         
         /* Run action */
 //        hero.run(heroDeath){
@@ -312,27 +333,6 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
         } catch let error {
             print(error.localizedDescription)
         }
-    }
-    
-    
-    
-    
-    
-     func addEnemy () {
-        
-        let minValue = self.size.width / 8;
-        let maxValue = self.size.width-20;
-        let spawnPoint = UInt32(maxValue - minValue);
-        
-        Enemy = SKSpriteNode(imageNamed: "Mushroom_1")
-        Enemy.size = CGSize(width: 38, height: 36)
-        
-        Enemy.position = CGPoint(x: CGFloat(arc4random_uniform(spawnPoint)), y: 200/*self.size.height*/)
-        self.addChild(Enemy)
-        
-//        let min: CGFloat = 15.0
-//        let max: CGFloat = 200.0
-//        let randomCGFloatBetweenMinAndMax2 = CGFloat(arc4random_uniform(UInt32(max-min)) + UInt32(min))
     }
  
 }
