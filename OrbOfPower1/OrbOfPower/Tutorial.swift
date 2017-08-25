@@ -46,6 +46,8 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
     var playGame: MSButtonNode!
     var end: SKSpriteNode!
     var jump = false
+    var noise: AVAudioPlayer?
+    var gamePlay: MSButtonNode!
     
     
     
@@ -221,10 +223,12 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             
             if nodeA.name == "landOrb" {
                 contactA.node?.removeFromParent()
+                playSong()
             }
             
             if nodeB.name == "landOrb" {
                 contactB.node?.removeFromParent()
+                playSong()
             }
         }
         
@@ -233,10 +237,12 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             
             if nodeA.name == "waterOrb" {
                 contactA.node?.removeFromParent()
+                playSong()
             }
             
             if nodeB.name == "waterOrb" {
                 contactB.node?.removeFromParent()
+                playSong()
             }
             
         }
@@ -280,9 +286,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             gameState = .gameOver
             
             //Show play button
-            playGame.state = .MSButtonNodeStateActive
+            buttonRestart.state = .MSButtonNodeStateActive
             
-            playGame.alpha = 1
+            buttonRestart.alpha = 1
             
             //We can return now
             return
@@ -292,9 +298,9 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             gameState = .gameOver
             
             //Show play button
-            playGame.state = .MSButtonNodeStateActive
+            buttonRestart.state = .MSButtonNodeStateActive
             
-            playGame.alpha = 1
+            buttonRestart.alpha = 1
             
             //We can return now
             return
@@ -330,6 +336,22 @@ class Tutorial: SKScene, SKPhysicsContactDelegate {
             guard let player = splash else { return }
             
             player.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func playSong() {
+        guard let url = Bundle.main.url(forResource: "Noise1", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            noise = try AVAudioPlayer(contentsOf: url)
+            guard let hero = noise else { return }
+            
+            hero.play()
         } catch let error {
             print(error.localizedDescription)
         }

@@ -63,6 +63,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var stoneScrollLayer: SKNode!
     var Enemy2: SKSpriteNode!
     var enemy1: SKSpriteNode!
+    var noise: AVAudioPlayer?
     
     
     
@@ -87,6 +88,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 //        
         /* Restart GameScene */
 //        skView?.presentScene(scene)
+    
+    func playSong() {
+        guard let url = Bundle.main.url(forResource: "Noise1", withExtension: "mp3") else { return }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+            
+            noise = try AVAudioPlayer(contentsOf: url)
+            guard let hero = noise else { return }
+            
+            hero.play()
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
     
     func playSound() {
         guard let url = Bundle.main.url(forResource: "splash", withExtension: "mp3") else { return }
@@ -451,10 +468,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if nodeA.name == "landOrb" {
                 contactA.node?.removeFromParent()
+                playSong()
             }
             
             if nodeB.name == "landOrb" {
                 contactB.node?.removeFromParent()
+                playSong()
             }
         }
         
@@ -463,10 +482,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             
             if nodeA.name == "waterOrb" {
                 contactA.node?.removeFromParent()
+                playSong()
             }
             
             if nodeB.name == "waterOrb" {
                 contactB.node?.removeFromParent()
+                playSong()
             }
             
         }

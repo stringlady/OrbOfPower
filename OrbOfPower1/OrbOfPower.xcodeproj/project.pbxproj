@@ -21,6 +21,30 @@
 		C822C91E1F292EB300F40C8A /* SeaObstacles.sks in Resources */ = {isa = PBXBuildFile; fileRef = C822C91D1F292EB300F40C8A /* SeaObstacles.sks */; };
 		C836B5CB1F486900009730CA /* landOrb.sks in Resources */ = {isa = PBXBuildFile; fileRef = C836B5CA1F486900009730CA /* landOrb.sks */; };
 		C836B5CD1F486972009730CA /* waterOrb.sks in Resources */ = {isa = PBXBuildFile; fileRef = C836B5CC1F486972009730CA /* waterOrb.sks */; };
+		C836B5CF1F4879F0009730CA /* Noise1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C836B5CE1F4879F0009730CA /* Noise1.mp3 */; };
+		C836B5E81F4D0633009730CA /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D11F4D0633009730CA /* Contents.json */; };
+		C836B5E91F4D0633009730CA /* Icon-App-20x20@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D21F4D0633009730CA /* Icon-App-20x20@1x.png */; };
+		C836B5EA1F4D0633009730CA /* Icon-App-20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D31F4D0633009730CA /* Icon-App-20x20@2x.png */; };
+		C836B5EB1F4D0633009730CA /* Icon-App-20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D41F4D0633009730CA /* Icon-App-20x20@3x.png */; };
+		C836B5EC1F4D0633009730CA /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D51F4D0633009730CA /* Icon-App-29x29@1x.png */; };
+		C836B5ED1F4D0633009730CA /* Icon-App-29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D61F4D0633009730CA /* Icon-App-29x29@2x.png */; };
+		C836B5EE1F4D0633009730CA /* Icon-App-29x29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D71F4D0633009730CA /* Icon-App-29x29@3x.png */; };
+		C836B5EF1F4D0633009730CA /* Icon-App-40x40@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D81F4D0633009730CA /* Icon-App-40x40@1x.png */; };
+		C836B5F01F4D0633009730CA /* Icon-App-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5D91F4D0633009730CA /* Icon-App-40x40@2x.png */; };
+		C836B5F11F4D0633009730CA /* Icon-App-40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DA1F4D0633009730CA /* Icon-App-40x40@3x.png */; };
+		C836B5F21F4D0633009730CA /* Icon-App-57x57@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DB1F4D0633009730CA /* Icon-App-57x57@1x.png */; };
+		C836B5F31F4D0633009730CA /* Icon-App-57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DC1F4D0633009730CA /* Icon-App-57x57@2x.png */; };
+		C836B5F41F4D0633009730CA /* Icon-App-60x60@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DD1F4D0633009730CA /* Icon-App-60x60@1x.png */; };
+		C836B5F51F4D0633009730CA /* Icon-App-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DE1F4D0633009730CA /* Icon-App-60x60@2x.png */; };
+		C836B5F61F4D0633009730CA /* Icon-App-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5DF1F4D0633009730CA /* Icon-App-60x60@3x.png */; };
+		C836B5F71F4D0633009730CA /* Icon-App-72x72@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E01F4D0633009730CA /* Icon-App-72x72@1x.png */; };
+		C836B5F81F4D0633009730CA /* Icon-App-72x72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E11F4D0633009730CA /* Icon-App-72x72@2x.png */; };
+		C836B5F91F4D0633009730CA /* Icon-App-76x76@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E21F4D0633009730CA /* Icon-App-76x76@1x.png */; };
+		C836B5FA1F4D0633009730CA /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E31F4D0633009730CA /* Icon-App-76x76@2x.png */; };
+		C836B5FB1F4D0633009730CA /* Icon-App-76x76@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E41F4D0633009730CA /* Icon-App-76x76@3x.png */; };
+		C836B5FC1F4D0633009730CA /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E51F4D0633009730CA /* Icon-App-83.5x83.5@2x.png */; };
+		C836B5FD1F4D0633009730CA /* Icon-Small-50x50@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E61F4D0633009730CA /* Icon-Small-50x50@1x.png */; };
+		C836B5FE1F4D0633009730CA /* Icon-Small-50x50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C836B5E71F4D0633009730CA /* Icon-Small-50x50@2x.png */; };
 		C83B65D41F4765A700A8BCEF /* Herculanum-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C83B65D21F4765A700A8BCEF /* Herculanum-Regular.ttf */; };
 		C83B65D51F4765A700A8BCEF /* ReadMe.txt in Resources */ = {isa = PBXBuildFile; fileRef = C83B65D31F4765A700A8BCEF /* ReadMe.txt */; };
 		C85593D91F3FCD1E0035D026 /* GameSong.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = C85593D81F3FCD1E0035D026 /* GameSong.mp3 */; };
@@ -49,6 +73,30 @@
 		C822C91D1F292EB300F40C8A /* SeaObstacles.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SeaObstacles.sks; sourceTree = "<group>"; };
 		C836B5CA1F486900009730CA /* landOrb.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = landOrb.sks; sourceTree = "<group>"; };
 		C836B5CC1F486972009730CA /* waterOrb.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = waterOrb.sks; sourceTree = "<group>"; };
+		C836B5CE1F4879F0009730CA /* Noise1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Noise1.mp3; sourceTree = "<group>"; };
+		C836B5D11F4D0633009730CA /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		C836B5D21F4D0633009730CA /* Icon-App-20x20@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-20x20@1x.png"; sourceTree = "<group>"; };
+		C836B5D31F4D0633009730CA /* Icon-App-20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-20x20@2x.png"; sourceTree = "<group>"; };
+		C836B5D41F4D0633009730CA /* Icon-App-20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-20x20@3x.png"; sourceTree = "<group>"; };
+		C836B5D51F4D0633009730CA /* Icon-App-29x29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@1x.png"; sourceTree = "<group>"; };
+		C836B5D61F4D0633009730CA /* Icon-App-29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@2x.png"; sourceTree = "<group>"; };
+		C836B5D71F4D0633009730CA /* Icon-App-29x29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-29x29@3x.png"; sourceTree = "<group>"; };
+		C836B5D81F4D0633009730CA /* Icon-App-40x40@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-40x40@1x.png"; sourceTree = "<group>"; };
+		C836B5D91F4D0633009730CA /* Icon-App-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-40x40@2x.png"; sourceTree = "<group>"; };
+		C836B5DA1F4D0633009730CA /* Icon-App-40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-40x40@3x.png"; sourceTree = "<group>"; };
+		C836B5DB1F4D0633009730CA /* Icon-App-57x57@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-57x57@1x.png"; sourceTree = "<group>"; };
+		C836B5DC1F4D0633009730CA /* Icon-App-57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-57x57@2x.png"; sourceTree = "<group>"; };
+		C836B5DD1F4D0633009730CA /* Icon-App-60x60@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-60x60@1x.png"; sourceTree = "<group>"; };
+		C836B5DE1F4D0633009730CA /* Icon-App-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-60x60@2x.png"; sourceTree = "<group>"; };
+		C836B5DF1F4D0633009730CA /* Icon-App-60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-60x60@3x.png"; sourceTree = "<group>"; };
+		C836B5E01F4D0633009730CA /* Icon-App-72x72@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-72x72@1x.png"; sourceTree = "<group>"; };
+		C836B5E11F4D0633009730CA /* Icon-App-72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-72x72@2x.png"; sourceTree = "<group>"; };
+		C836B5E21F4D0633009730CA /* Icon-App-76x76@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@1x.png"; sourceTree = "<group>"; };
+		C836B5E31F4D0633009730CA /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
+		C836B5E41F4D0633009730CA /* Icon-App-76x76@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-76x76@3x.png"; sourceTree = "<group>"; };
+		C836B5E51F4D0633009730CA /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
+		C836B5E61F4D0633009730CA /* Icon-Small-50x50@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50x50@1x.png"; sourceTree = "<group>"; };
+		C836B5E71F4D0633009730CA /* Icon-Small-50x50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50x50@2x.png"; sourceTree = "<group>"; };
 		C83B65D21F4765A700A8BCEF /* Herculanum-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Herculanum-Regular.ttf"; sourceTree = "<group>"; };
 		C83B65D31F4765A700A8BCEF /* ReadMe.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.txt; sourceTree = "<group>"; };
 		C85593D81F3FCD1E0035D026 /* GameSong.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GameSong.mp3; sourceTree = "<group>"; };
@@ -107,14 +155,46 @@
 				C822C9171F2903FC00F40C8A /* MainMenu.swift */,
 				C822C91B1F29267500F40C8A /* CGFloat+Extensions.swift */,
 				C822C9191F29084700F40C8A /* MSButtonNode.swift */,
+				C836B5CE1F4879F0009730CA /* Noise1.mp3 */,
 				C822C9051F2685B300F40C8A /* Main.storyboard */,
 				C8A960BF1F3A3FE2004CE859 /* splash.mp3 */,
 				C85593D81F3FCD1E0035D026 /* GameSong.mp3 */,
+				C836B5D01F4D0632009730CA /* AppIcon.appiconset */,
 				C8C262291F32207400563D15 /* Assets.xcassets */,
 				C822C90A1F2685B300F40C8A /* LaunchScreen.storyboard */,
 				C822C90D1F2685B300F40C8A /* Info.plist */,
 			);
 			path = OrbOfPower;
+			sourceTree = "<group>";
+		};
+		C836B5D01F4D0632009730CA /* AppIcon.appiconset */ = {
+			isa = PBXGroup;
+			children = (
+				C836B5D11F4D0633009730CA /* Contents.json */,
+				C836B5D21F4D0633009730CA /* Icon-App-20x20@1x.png */,
+				C836B5D31F4D0633009730CA /* Icon-App-20x20@2x.png */,
+				C836B5D41F4D0633009730CA /* Icon-App-20x20@3x.png */,
+				C836B5D51F4D0633009730CA /* Icon-App-29x29@1x.png */,
+				C836B5D61F4D0633009730CA /* Icon-App-29x29@2x.png */,
+				C836B5D71F4D0633009730CA /* Icon-App-29x29@3x.png */,
+				C836B5D81F4D0633009730CA /* Icon-App-40x40@1x.png */,
+				C836B5D91F4D0633009730CA /* Icon-App-40x40@2x.png */,
+				C836B5DA1F4D0633009730CA /* Icon-App-40x40@3x.png */,
+				C836B5DB1F4D0633009730CA /* Icon-App-57x57@1x.png */,
+				C836B5DC1F4D0633009730CA /* Icon-App-57x57@2x.png */,
+				C836B5DD1F4D0633009730CA /* Icon-App-60x60@1x.png */,
+				C836B5DE1F4D0633009730CA /* Icon-App-60x60@2x.png */,
+				C836B5DF1F4D0633009730CA /* Icon-App-60x60@3x.png */,
+				C836B5E01F4D0633009730CA /* Icon-App-72x72@1x.png */,
+				C836B5E11F4D0633009730CA /* Icon-App-72x72@2x.png */,
+				C836B5E21F4D0633009730CA /* Icon-App-76x76@1x.png */,
+				C836B5E31F4D0633009730CA /* Icon-App-76x76@2x.png */,
+				C836B5E41F4D0633009730CA /* Icon-App-76x76@3x.png */,
+				C836B5E51F4D0633009730CA /* Icon-App-83.5x83.5@2x.png */,
+				C836B5E61F4D0633009730CA /* Icon-Small-50x50@1x.png */,
+				C836B5E71F4D0633009730CA /* Icon-Small-50x50@2x.png */,
+			);
+			path = AppIcon.appiconset;
 			sourceTree = "<group>";
 		};
 		C83B65D11F4765A700A8BCEF /* herculanum */ = {
@@ -158,7 +238,7 @@
 				TargetAttributes = {
 					C822C8F71F2685B300F40C8A = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = GL7748R9AC;
+						DevelopmentTeam = SS7AZ6EDYB;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -188,19 +268,43 @@
 			files = (
 				C83B65D51F4765A700A8BCEF /* ReadMe.txt in Resources */,
 				C8A960C01F3A3FE2004CE859 /* splash.mp3 in Resources */,
+				C836B5E81F4D0633009730CA /* Contents.json in Resources */,
+				C836B5EB1F4D0633009730CA /* Icon-App-20x20@3x.png in Resources */,
 				C836B5CB1F486900009730CA /* landOrb.sks in Resources */,
+				C836B5FE1F4D0633009730CA /* Icon-Small-50x50@2x.png in Resources */,
+				C836B5F01F4D0633009730CA /* Icon-App-40x40@2x.png in Resources */,
+				C836B5F51F4D0633009730CA /* Icon-App-60x60@2x.png in Resources */,
+				C836B5F91F4D0633009730CA /* Icon-App-76x76@1x.png in Resources */,
 				C85593D91F3FCD1E0035D026 /* GameSong.mp3 in Resources */,
+				C836B5EA1F4D0633009730CA /* Icon-App-20x20@2x.png in Resources */,
+				C836B5E91F4D0633009730CA /* Icon-App-20x20@1x.png in Resources */,
 				C836B5CD1F486972009730CA /* waterOrb.sks in Resources */,
+				C836B5FC1F4D0633009730CA /* Icon-App-83.5x83.5@2x.png in Resources */,
 				C822C9071F2685B300F40C8A /* Main.storyboard in Resources */,
+				C836B5F21F4D0633009730CA /* Icon-App-57x57@1x.png in Resources */,
+				C836B5F61F4D0633009730CA /* Icon-App-60x60@3x.png in Resources */,
 				C822C91E1F292EB300F40C8A /* SeaObstacles.sks in Resources */,
+				C836B5FD1F4D0633009730CA /* Icon-Small-50x50@1x.png in Resources */,
+				C836B5CF1F4879F0009730CA /* Noise1.mp3 in Resources */,
+				C836B5FA1F4D0633009730CA /* Icon-App-76x76@2x.png in Resources */,
+				C836B5F31F4D0633009730CA /* Icon-App-57x57@2x.png in Resources */,
 				C822C8FE1F2685B300F40C8A /* Tutorial.sks in Resources */,
 				C83B65D41F4765A700A8BCEF /* Herculanum-Regular.ttf in Resources */,
+				C836B5F81F4D0633009730CA /* Icon-App-72x72@2x.png in Resources */,
+				C836B5F11F4D0633009730CA /* Icon-App-40x40@3x.png in Resources */,
+				C836B5EC1F4D0633009730CA /* Icon-App-29x29@1x.png in Resources */,
+				C836B5F41F4D0633009730CA /* Icon-App-60x60@1x.png in Resources */,
+				C836B5EE1F4D0633009730CA /* Icon-App-29x29@3x.png in Resources */,
 				C822C90C1F2685B300F40C8A /* LaunchScreen.storyboard in Resources */,
+				C836B5ED1F4D0633009730CA /* Icon-App-29x29@2x.png in Resources */,
 				C822C9141F27799900F40C8A /* MainMenu.sks in Resources */,
+				C836B5FB1F4D0633009730CA /* Icon-App-76x76@3x.png in Resources */,
 				C8A960C41F3B5FA9004CE859 /* GameScene.sks in Resources */,
 				C8C2622B1F32207400563D15 /* Assets.xcassets in Resources */,
+				C836B5EF1F4D0633009730CA /* Icon-App-40x40@1x.png in Resources */,
 				C8A960C21F3B4197004CE859 /* Platform.sks in Resources */,
 				C822C9001F2685B300F40C8A /* Actions.sks in Resources */,
+				C836B5F71F4D0633009730CA /* Icon-App-72x72@1x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,12 +444,14 @@
 		C822C9111F2685B300F40C8A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GL7748R9AC;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SS7AZ6EDYB;
 				INFOPLIST_FILE = OrbOfPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Make-School.OrbOfPower";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Make-School.OrbOfPower";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -354,12 +460,14 @@
 		C822C9121F2685B300F40C8A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = GL7748R9AC;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-1";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = SS7AZ6EDYB;
 				INFOPLIST_FILE = OrbOfPower/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Make-School.OrbOfPower";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Make-School.OrbOfPower";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
